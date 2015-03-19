@@ -1,12 +1,16 @@
 import openmesh
 import numpy
+import os
 
 from vispy import app
 from vispy import gloo
 from vispy import util
 
 def get_file_content(filename):
-	file = open(filename)
+	abspath = os.path.abspath(__file__)
+	dirname = os.path.dirname(abspath)
+
+	file = open(dirname + '/' + filename)
 	content = file.read()
 	file.close()
 	return content
@@ -78,8 +82,8 @@ class Canvas(app.Canvas):
 		# Set up off-screen shader
 		# -----------------------------------
 
-		vsh = get_file_content('omvispy/shaders/offscreen.vsh')
-		fsh = get_file_content('omvispy/shaders/offscreen.fsh')
+		vsh = get_file_content('shaders/offscreen.vsh')
+		fsh = get_file_content('shaders/offscreen.fsh')
 		self.offscreen = gloo.Program(vsh, fsh)
 
 		# Triangle data
@@ -98,8 +102,8 @@ class Canvas(app.Canvas):
 		# -----------------------------------
 
 		if mode == 'points':
-			vsh = get_file_content('omvispy/shaders/points.vsh')
-			fsh = get_file_content('omvispy/shaders/points.fsh')
+			vsh = get_file_content('shaders/points.vsh')
+			fsh = get_file_content('shaders/points.fsh')
 
 			self.onscreen = gloo.Program(vsh, fsh)
 
@@ -116,8 +120,8 @@ class Canvas(app.Canvas):
 		# -----------------------------------
 
 		if mode == 'wireframe':
-			vsh = get_file_content('omvispy/shaders/wireframe.vsh')
-			fsh = get_file_content('omvispy/shaders/wireframe.fsh')
+			vsh = get_file_content('shaders/wireframe.vsh')
+			fsh = get_file_content('shaders/wireframe.fsh')
 
 			self.onscreen = gloo.Program(vsh, fsh)
 
@@ -139,8 +143,8 @@ class Canvas(app.Canvas):
 		# -----------------------------------
 
 		if mode == 'flat':
-			vsh = get_file_content('omvispy/shaders/flat.vsh')
-			fsh = get_file_content('omvispy/shaders/flat.fsh')
+			vsh = get_file_content('shaders/flat.vsh')
+			fsh = get_file_content('shaders/flat.fsh')
 
 			self.onscreen = gloo.Program(vsh, fsh)
 
