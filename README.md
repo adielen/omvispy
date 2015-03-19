@@ -4,11 +4,13 @@ This Python module can be used to visualize mesh objects created with the OpenMe
 # How to use it
 Clone the repository into a directory called omvispy. Make sure that the omvispy directory and the openmesh.so file are in your module search path. Then in IPython Notebook:
 
+```python
 %gui qt
 from omvispy import *
 mesh = TriMesh()
 read_mesh(mesh, 'bunny.obj')
 render(mesh, 'wireframe')
+```
 
 # Camera Controls
 Left mouse button: rotate camera
